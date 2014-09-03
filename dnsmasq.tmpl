@@ -1,0 +1,7 @@
++{{ range $host, $containers := groupByMulti $ "Env.VIRTUAL_HOST" "," }}
++{{ range $index, $value := $containers }}
++{{ with $address := index $value.Addresses 0 }}
++address="/{{ $host }}/{{ $address.IP }}"
++{{ end }}
++{{ end }}
++{{ end }}
